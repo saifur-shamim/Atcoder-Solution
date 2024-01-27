@@ -88,175 +88,60 @@ const dl PI=acos(-1);
 const int inf=2e9;
 const ll infll=900000000000000000;
 
-
+const int N = 1e6 + 9;
+int a[N], b[N], tot[N];
+long long f[N];
 
 int main()
 {
 
     faster;
+    int n;
+    cin >> n;
 
-
-    /*
-    #ifndef ONLINE_JUDGE
-       freopen("input.txt","r",stdin);
-       freopen("output.txt","w",stdout);
-    #endif
-    */
-
-/// Patience, persistence, and perspiration make an unbeatable combination for success.
-/// The formula for success: rise early, work hard, strike oil.
-/// Winners are not afraid of losing. But losers are. Failure is part of the process of success. People who avoid failure also avoid success.
-
-    int tc=1;
-    //cin>>tc;
-
-    while(tc--)
+    for (int i = 1; i <= n; i++)
     {
-
-
-        ll n,i;
-        cin>>n;
-
-        ll q[n+2],a[n+2],b[n+2];
-
-
-        For(i,1,n) cin>>q[i];
-        For(i,1,n) cin>>a[i];
-        For(i,1,n) cin>>b[i];
-
-        ll mx1=-1,mx2=-1;
-
-        ll mn1=infll,mn2=infll;
-
-        for(i=1; i<=n; i++)
-        {
-            if(a[i]==0) continue;
-
-            if(a[i]>q[i])
-            {
-                mn1=infll;
-                break;
-            }
-
-            mn1=min(mn1,q[i]/a[i]);
-        }
-
-        for(i=1; i<=n; i++)
-        {
-            if(b[i]==0) continue;
-
-            if(b[i]>q[i])
-            {
-                mn2=infll;
-                break;
-            }
-
-            mn2=min(mn2,q[i]/b[i]);
-        }
-
-       // dbg(mn1,mn2);
-        if(mn1!=infll)
-            mx1=mn1;
-
-        if(mn2!=infll)
-            mx2=mn2;
-
-        //dbg(mx1,mx2);
-        ll fmx=max(mx1,mx2);
-
-        if(fmx==-1)
-        {
-            cout<<"0\n";
-            return 0;
-        }
-
-        ll ans=fmx;
-        if(fmx==mx1 and mx2!=-1)
-        {
-
-            for(ll j=fmx; j>1; j--)
-            {
-                ll tmp=infll;
-                bool f=true;
-                for(i=1; i<=n; i++)
-                {
-                   //dbg(j);
-                    ll rem=q[i]-(a[i]*j);
-
-                    if(b[i]==0 or (rem==0 and a[i]==0))
-                    {
-                        tmp=tmp;
-                        continue;
-                    }
-                    ll pos=rem/b[i];
-
-                   // dbg(rem,pos,b[i]);
-
-                   if(rem<=0 and b[i]!=0)
-                    {
-                        //dbg("2nd");
-                        f=false;
-                        break;
-                    }
-                    else
-                        tmp=min(tmp,pos);
-                }
-
-
-
-                if(tmp!=infll)
-                    ans=max(ans,j+tmp);
-
-                    //dbg(ans);
-            }
-
-
-        }
-        else if(fmx==mx2 and mx1!=-1)
-        {
-            //dbg("else");
-
-            for(ll j=fmx; j>=1; j--)
-            {
-                ll tmp=infll;
-                bool f=true;
-                for(i=1; i<=n; i++)
-                {
-                  //  dbg(i);
-                    ll rem=q[i]-(b[i]*j);
-
-                    if(a[i]==0 or (rem==0 and a[i]==0))
-                    {
-                        tmp=tmp;
-                        continue;
-                    }
-                    ll pos=rem/a[i];
-
-                   // dbg(rem,pos,a[i]);
-
-                   if(rem<=0 and a[i]!=0)
-                    {
-                        //dbg("2nd");
-                        f=false;
-                        break;
-                    }
-                    else
-                        tmp=min(tmp,pos);
-
-                    //dbg(j,i,tmp);
-                }
-
-
-                if(tmp!=infll)
-                    ans=max(ans,j+tmp);
-            }
-
-
-        }
-
-        cout<<ans;nl;
-
+        cin >> tot[i];
+    }
+    for (int i = 1; i <= n; i++)
+    {
+        cin >> a[i];
+    }
+    for (int i = 1; i <= n; i++)
+    {
+        cin >> b[i];
     }
 
+    int ans = 0;
+    for (int k = 0; k < N; k++)
+    {
+        for (int i = 1; i <= n; i++)
+        {
+            f[i] = tot[i];
+        }
+        bool ok = true;
+        for (int i = 1; i <= n; i++)
+        {
+            f[i] -= 1LL * a[i] * k;
+            if (f[i] < 0)
+            {
+                ok = false;
+            }
+        }
+        if (ok)
+        {
+            int cur = N;
+            for (int i = 1; i <= n; i++)
+            {
+                if (b[i])
+                {
+                    cur = min(cur, (int)f[i] / b[i]);
+                }
+            }
+            ans = max(ans, k + cur);
+        }
+    }
+    cout << ans << '\n';
     return 0;
 }
+
