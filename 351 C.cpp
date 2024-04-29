@@ -106,15 +106,6 @@ int main()
 {
 
 
-
-
-    /*
-    #ifndef ONLINE_JUDGE
-       freopen("input.txt","r",stdin);
-       freopen("output.txt","w",stdout);
-    #endif
-    */
-
 /// Patience, persistence, and perspiration make an unbeatable combination for success.
 /// The formula for success: rise early, work hard, strike oil.
 /// Winners are not afraid of losing. But losers are. Failure is part of the process of success. People who avoid failure also avoid success.
