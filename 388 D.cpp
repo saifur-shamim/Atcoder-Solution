@@ -110,21 +110,7 @@ int main()
 /// The formula for success: rise early, work hard, strike oil.
 /// Winners are not afraid of losing. But losers are. Failure is part of the process of success. People who avoid failure also avoid success.
 
-    int n,i;
-
-    ordered_set st;
-    o_set<ll> st1;
-
-    ll ar[3]={1,2,2};
-
-    for(i=0;i<3;i++)
-    {
-        st.insert(ar[i]);
-        st1.insert(ar[i]);
-
-        dbg(sz(st),sz(st1));
-    }
-/*
+    
     int n;
     cin >> n;
     vector <int> v(n);
@@ -140,12 +126,11 @@ int main()
         v[i] += st.size() - st.order_of_key(i);
         st.insert(i + v[i]);
 
-        //dbg(i,i+v[i],sz(st));
-        //dbg(i,v[i],(n-i-1));
+       
         cout <<max(0, v[i] - (n-i-1)) <<" ";
 
     }
     cout <<"\n";
-*/
+
     return 0;
 }
